@@ -2,10 +2,10 @@
 
 ## Live Demo
 
-Live Interactive Demo:  
+Live Interactive Demo:
 https://mall-deck-app.vercel.app/
 
-Demo Video:  
+Demo Video:
 demo-video/demo.mp4
 
 ---
@@ -17,9 +17,10 @@ This project is a browser-based interactive sales deck designed for large-scale 
 It replaces fragmented sales workflows (PDFs, videos, spreadsheets) with a single immersive, high-impact experience.
 
 The platform is built for:
-- Retail tenants
-- Brand sponsors and partners
-- Event organizers and production teams
+
+* Retail tenants
+* Brand sponsors and partners
+* Event organizers and production teams
 
 It is designed to communicate scale instantly and drive business actions such as leasing, sponsorship, and event bookings.
 
@@ -27,12 +28,12 @@ It is designed to communicate scale instantly and drive business actions such as
 
 ## Objective
 
-- Build a cinematic, high-end interactive sales tool
-- Deliver non-linear navigation (user-controlled journey)
-- Use video as the primary storytelling medium
-- Present business value clearly (footfall, brands, reach)
-- Ensure high performance (90+ Lighthouse)
-- Integrate AI-assisted workflows and assets
+* Build a cinematic, high-end interactive sales tool
+* Deliver non-linear navigation (user-controlled journey)
+* Use video as the primary storytelling medium
+* Present business value clearly (footfall, brands, reach)
+* Ensure high performance (90+ Lighthouse)
+* Integrate AI-assisted workflows and assets
 
 ---
 
@@ -45,6 +46,7 @@ C:\mall-deck\mall-deck-app
 ## Initial Setup Steps
 
 1. Installed Node.js (LTS)
+
 2. npm installed with Node.js
 
 3. Created project using Vite:
@@ -52,8 +54,9 @@ C:\mall-deck\mall-deck-app
    npm create vite@latest mall-deck-app
 
 4. Selected:
-   - Framework: React
-   - Variant: JavaScript
+
+   * Framework: React
+   * Variant: JavaScript
 
 5. Navigate to project:
 
@@ -77,24 +80,25 @@ C:\mall-deck\mall-deck-app
 ## Project Structure
 
 mall-deck-app/
-- public/
-- src/
-  - components/
-  - sections/
-  - styles/
-- screenshots/
-- demo-video/
-- package.json
-- vite.config.js
+
+* public/
+* src/
+  * components/
+  * sections/
+  * styles/
+* screenshots/
+* demo-video/
+* package.json
+* vite.config.js
 
 ---
 
 ## Public Assets
 
-- hero.mp4 → cinematic hero background
-- intro.mp4 → intro experience
-- map.jpg → interactive mall map
-- brand logos → Prada, Rolex, Dior, etc.
+* hero.mp4 → cinematic hero background
+* intro.mp4 → intro experience
+* map.jpg → interactive mall map
+* brand logos → Prada, Rolex, Dior, etc.
 
 ---
 
@@ -102,44 +106,71 @@ mall-deck-app/
 
 src/sections/
 
-- Hero.jsx → cinematic entry + scale statement
-- Immersive.jsx → scroll-based video storytelling
-- Stats.jsx → animated metrics (100M+ visitors)
-- Retail.jsx → retail positioning + brand ecosystem
-- Luxury.jsx → premium audience targeting
-- Dining.jsx → lifestyle + spend insights
-- Entertainment.jsx → attraction ecosystem
-- Events.jsx → event platform positioning
-- EventDetails.jsx → expandable event module
-- Leasing.jsx → leasing funnel
-- Sponsorship.jsx → brand partnerships
-- CTA.jsx → final conversion actions
+* Hero.jsx → cinematic entry + scale statement
+* Immersive.jsx → scroll-based video storytelling
+* Stats.jsx → animated metrics (100M+ visitors)
+* Retail.jsx → retail positioning + brand ecosystem
+* Luxury.jsx → premium audience targeting
+* Dining.jsx → lifestyle + spend insights
+* Entertainment.jsx → attraction ecosystem
+* Events.jsx → event platform positioning
+* EventDetails.jsx → expandable event module
+* Leasing.jsx → leasing funnel
+* Sponsorship.jsx → brand partnerships
+* CTA.jsx → final conversion actions
 
 ---
 
 ## Key Features
 
-### Cinematic Experience
-- Fullscreen video hero
-- Scroll-triggered animations
-- Minimal UI, maximum visual impact
+## Cinematic Experience
 
-### Business-Focused Storytelling
-- Footfall metrics
-- Brand positioning
-- Revenue potential insights
-- Event platform scale
+* Fullscreen video hero
+* Scroll-triggered animations
+* Minimal UI, maximum visual impact
 
-### Interactive Navigation
-- Non-linear navigation
-- Smooth scrolling
-- Section-based exploration
+## Business-Focused Storytelling
 
-### Conversion System
-- Leasing CTA
-- Visit planner
-- Interactive map
-- Form validation
+* Footfall metrics
+* Brand positioning
+* Revenue potential insights
+* Event platform scale
+
+## Interactive Navigation
+
+* Non-linear navigation
+* Smooth scrolling
+* Section-based exploration
+
+## Conversion System
+
+* Leasing CTA
+* Visit planner
+* Interactive map
+* Form validation
+
+---
+
+## Advanced Engineering Enhancements
+
+## Code Splitting (Performance Optimization)
+
+* Implemented using React.lazy and Suspense
+* Each section is loaded only when required
+* Reduces initial bundle size
+* Improves first paint and Lighthouse performance
+
+## Scroll Optimization
+
+* requestAnimationFrame used for scroll handling
+* Prevents unnecessary re-renders
+* Ensures smooth performance across sections
+
+## Cursor Rendering Optimization
+
+* GPU-based transform rendering
+* Avoids layout thrashing
+* Maintains smooth 60fps interaction
 
 ---
 
@@ -147,51 +178,62 @@ src/sections/
 
 AI was used intentionally across the product workflow.
 
-### Tools Used
-- ChatGPT (content, logic, structure)
-- AI-assisted design thinking (UX, layout decisions)
+## Tools Used
 
-### Application Areas
+* ChatGPT (content, logic, structure)
+* AI-assisted design thinking (UX and layout decisions)
 
-1. Content & Narrative  
-- Business storytelling (Retail, Luxury, Events)  
-- Scale messaging (100M+ visitors, brand density)  
-- Structured pitch flow  
+## Application Areas
 
-2. UI/UX Design  
-- Section hierarchy  
-- Layout composition  
-- Interaction planning  
+## Content and Narrative
 
-3. Code & Architecture  
-- Component modularization  
-- Performance strategies  
-- Animation logic  
+* Business storytelling (Retail, Luxury, Events)
+* Scale messaging (100M+ visitors, brand density)
+* Structured pitch flow
 
-4. Visual Enhancement  
-- Asset selection  
-- Consistent premium aesthetic  
+## UI and UX Design
+
+* Section hierarchy
+* Layout composition
+* Interaction planning
+
+## Code and Architecture
+
+* Component modularization
+* Performance optimization strategies
+* Animation logic using Framer Motion
+
+## Visual Enhancement
+
+* Asset selection
+* Maintaining consistent premium design language
 
 ---
 
-## Innovation Layer (Simulated Intelligence)
+## Innovation Layer (Insight Engine)
 
-The platform includes simulated intelligence features:
+A dynamic Insight Engine has been implemented to simulate intelligent business guidance.
 
-### Smart Visit Suggestions
-- Morning → Dining focus  
-- Afternoon → Retail engagement  
-- Evening → Luxury + entertainment peak  
+## What It Does
 
-### Business Insights
-- Retail conversion positioning  
-- Event audience scale  
-- Dining spend behavior  
+* Tracks user scroll position
+* Updates contextual business insights dynamically
+* Reinforces value propositions in real-time
 
-### Expandable Architecture
-- Event module → booking system ready  
-- Sponsorship → analytics ready  
-- Dashboard → future real-time integration  
+## Example Insights
+
+* Entry → "100M+ annual visitors. High-impact exposure."
+* Retail → "Retail zones driving maximum conversion."
+* Luxury → "High-net-worth audience engagement."
+* Dining → "Increased dwell time and spend."
+* Events → "Global-scale activation platform."
+
+## Why This Matters
+
+* Simulates data-driven decision support
+* Enhances storytelling with contextual intelligence
+* Demonstrates product-thinking beyond static UI
+* Shows capability to evolve into analytics-driven platform
 
 ---
 
@@ -199,35 +241,38 @@ The platform includes simulated intelligence features:
 
 Lighthouse Score:
 
-- Performance: 92+  
-- Accessibility: 100  
-- Best Practices: 100  
-- SEO: 90+  
+* Performance: 92+
+* Accessibility: 100
+* Best Practices: 100
+* SEO: 90+
 
-Optimizations:
-- Lazy loading images
-- Video preload control
-- Reduced motion support
-- Optimized rendering
+## Optimizations
+
+* Lazy loading images
+* Video preload control
+* Code splitting using React.lazy
+* Scroll performance optimization
+* Reduced motion support
+* GPU-accelerated animations
 
 ---
 
 ## Screenshots
 
-Location:  
+Location:
 screenshots/
 
 Included:
 
-- hero.png → cinematic entry section  
-- intro.png → intro experience  
-- brands.png → brand ecosystem  
-- retail.png → retail positioning  
-- luxury.png → luxury experience  
-- events.png → event storytelling  
-- leasing.png → leasing module  
-- visit.png → visit planner UI  
-- lighthouse.png → performance audit  
+* hero.png → cinematic entry section
+* intro.png → intro experience
+* brands.png → brand ecosystem
+* retail.png → retail positioning
+* luxury.png → luxury experience
+* events.png → event storytelling
+* leasing.png → leasing module
+* visit.png → visit planner UI
+* lighthouse.png → performance audit
 
 These screenshots validate UI quality, interaction flow, and performance.
 
@@ -235,31 +280,35 @@ These screenshots validate UI quality, interaction flow, and performance.
 
 ## Demo Video
 
-Location:  
+Location:
 demo-video/demo.mp4
 
-Covers:
-- Full navigation flow
-- Scroll interactions
-- Video storytelling
-- CTA and conversions
+## Covers
+
+* Full navigation flow
+* Scroll interactions
+* Video storytelling
+* CTA and conversion flows
 
 ---
 
 ## Deployment
 
-Live Production URL:  
+Live Production URL:
 https://mall-deck-app.vercel.app/
 
-Supported platforms:
-- Vercel
-- Netlify
-- GitHub Pages
+## Supported Platforms
 
-Build command:
+* Vercel
+* Netlify
+* GitHub Pages
+
+## Build Commands
+
 npm run build
 
-Preview production build:
+## Preview Production Build
+
 npm run preview
 
 ---
@@ -269,10 +318,12 @@ npm run preview
 cd C:\mall-deck\mall-deck-app  
 npm install  
 
-Development mode:
+## Development Mode
+
 npm run dev  
 
-Production preview:
+## Production Preview
+
 npm run build  
 npm run preview  
 
@@ -280,29 +331,30 @@ npm run preview
 
 ## Design Approach
 
-- Premium and minimal UI
-- Inspired by Apple, Tesla, luxury brands
-- Built for decision-makers
-- Focus on clarity, scale, and conversion
+* Premium and minimal UI
+* Inspired by Apple, Tesla, luxury brands
+* Built for decision-makers
+* Focused on clarity, scale, and conversion
 
 ---
 
 ## What This Project Demonstrates
 
-- Product thinking over static UI
-- Scalable architecture
-- Performance optimization
-- Business storytelling
-- Effective AI-assisted workflow
+* Product thinking over static UI
+* Scalable architecture
+* Performance-first engineering
+* Business-driven storytelling
+* AI-assisted workflow integration
+* Simulation of intelligent systems without backend dependency
 
 ---
 
 ## Future Improvements
 
-- Real-time analytics integration
-- AI personalization (brand-specific insights)
-- Advanced sponsorship dashboards
-- Multi-layer video storytelling
+* Real-time analytics integration
+* AI personalization (brand-specific insights)
+* Advanced sponsorship dashboards
+* Multi-layer video storytelling
 
 ---
 
