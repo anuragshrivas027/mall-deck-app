@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 
 import Navbar from "./components/Navbar";
 import Intro from "./sections/Intro";
+import InsightPanel from "./components/InsightPanel";
 
 /* 🔥 CODE SPLITTING */
 const Hero = lazy(() => import("./sections/Hero"));
@@ -40,18 +41,59 @@ export default function App() {
   const [entered, setEntered] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  /* 🔥 CURSOR GLOW */
+  /* 🔥 CURSOR (optimized) */
   const [cursor, setCursor] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
-    const move = (e) => setCursor({ x: e.clientX, y: e.clientY });
+    const move = (e) => {
+      requestAnimationFrame(() => {
+        setCursor({ x: e.clientX, y: e.clientY });
+      });
+    };
     window.addEventListener("mousemove", move);
     return () => window.removeEventListener("mousemove", move);
   }, []);
 
+  /* 🔥 LOADER */
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 1200);
+    const timer = setTimeout(() => setLoading(false), 1000);
     return () => clearTimeout(timer);
+  }, []);
+
+  /* 🔥 INSIGHT ENGINE */
+  const [insight, setInsight] = useState("");
+
+  useEffect(() => {
+    let ticking = false;
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const y = window.scrollY;
+
+          if (y < 800) {
+            setInsight("100M+ annual visitors. High-impact entry exposure.");
+          } else if (y < 1600) {
+            setInsight("Retail zones driving maximum brand conversion.");
+          } else if (y < 2400) {
+            setInsight("Luxury segment attracting high-net-worth audience.");
+          } else if (y < 3200) {
+            setInsight("Dining & lifestyle extending visitor dwell time.");
+          } else if (y < 4200) {
+            setInsight("Event platform enabling global-scale activations.");
+          } else {
+            setInsight("Leasing, sponsorship, and event opportunities active.");
+          }
+
+          ticking = false;
+        });
+
+        ticking = true;
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
@@ -60,7 +102,9 @@ export default function App() {
       {/* 🔥 CURSOR */}
       <div
         className="cursor-glow"
-        style={{ left: cursor.x, top: cursor.y }}
+        style={{
+          transform: `translate(${cursor.x}px, ${cursor.y}px)`
+        }}
       />
 
       {loading && <Loader />}
@@ -79,8 +123,13 @@ export default function App() {
           >
             <Navbar />
 
-            <Suspense fallback={<div className="text-center mt-40">Loading...</div>}>
-
+            <Suspense
+              fallback={
+                <div className="text-center mt-40 text-muted">
+                  Loading experience...
+                </div>
+              }
+            >
               <main className="pt-20">
 
                 <section id="hero"><Hero /></section>
@@ -104,8 +153,10 @@ export default function App() {
                 <section id="cta"><CTA /></section>
 
               </main>
-
             </Suspense>
+
+            {/* 🔥 WOW LAYER */}
+            <InsightPanel insight={insight} />
 
           </motion.div>
         )}
