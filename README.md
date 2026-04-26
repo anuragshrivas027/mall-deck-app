@@ -1,16 +1,27 @@
 # Galleria Mall Interactive Sales Deck
 
+## Live Demo
+
+Live Interactive Demo:  
+https://mall-deck-app.vercel.app/
+
+Demo Video:  
+demo-video/demo.mp4
+
+---
+
 ## Project Overview
 
-This project is a browser-based interactive sales deck built for a large-scale shopping mall property.  
-It replaces traditional fragmented sales processes (PDFs, videos, spreadsheets) with a single immersive experience.
+This project is a browser-based interactive sales deck designed for large-scale shopping mall properties.
 
-The platform is designed for:
+It replaces fragmented sales workflows (PDFs, videos, spreadsheets) with a single immersive, high-impact experience.
+
+The platform is built for:
 - Retail tenants
-- Brand partners and sponsors
+- Brand sponsors and partners
 - Event organizers and production teams
 
-The goal is to create immediate impact, communicate scale, and drive business actions such as leasing, sponsorship, and event bookings.
+It is designed to communicate scale instantly and drive business actions such as leasing, sponsorship, and event bookings.
 
 ---
 
@@ -19,9 +30,9 @@ The goal is to create immediate impact, communicate scale, and drive business ac
 - Build a cinematic, high-end interactive sales tool
 - Deliver non-linear navigation (user-controlled journey)
 - Use video as the primary storytelling medium
-- Present business value clearly (footfall, brands, revenue potential)
-- Ensure performance, responsiveness, and deployability
-- Integrate AI-assisted assets and workflows
+- Present business value clearly (footfall, brands, reach)
+- Ensure high performance (90+ Lighthouse)
+- Integrate AI-assisted workflows and assets
 
 ---
 
@@ -34,7 +45,7 @@ C:\mall-deck\mall-deck-app
 ## Initial Setup Steps
 
 1. Installed Node.js (LTS)
-2. Installed npm (comes with Node.js)
+2. npm installed with Node.js
 
 3. Created project using Vite:
 
@@ -44,20 +55,20 @@ C:\mall-deck\mall-deck-app
    - Framework: React
    - Variant: JavaScript
 
-5. Navigated to project:
+5. Navigate to project:
 
    cd mall-deck-app
 
-6. Installed dependencies:
+6. Install dependencies:
 
    npm install
 
-7. Installed additional libraries:
+7. Install libraries:
 
-   npm install framer-motion
-   npm install tailwindcss postcss autoprefixer
+   npm install framer-motion  
+   npm install tailwindcss postcss autoprefixer  
 
-8. Initialized Tailwind:
+8. Initialize Tailwind:
 
    npx tailwindcss init -p
 
@@ -68,6 +79,9 @@ C:\mall-deck\mall-deck-app
 mall-deck-app/
 - public/
 - src/
+  - components/
+  - sections/
+  - styles/
 - screenshots/
 - demo-video/
 - package.json
@@ -77,10 +91,10 @@ mall-deck-app/
 
 ## Public Assets
 
-- hero.mp4 (cinematic entry video)
-- intro.mp4 (intro experience)
-- map.jpg (interactive mall map)
-- brand logos (Prada, Rolex, Dior, etc.)
+- hero.mp4 → cinematic hero background
+- intro.mp4 → intro experience
+- map.jpg → interactive mall map
+- brand logos → Prada, Rolex, Dior, etc.
 
 ---
 
@@ -88,18 +102,18 @@ mall-deck-app/
 
 src/sections/
 
-- Hero.jsx → First impression (scale + business hook)
-- Immersive.jsx → Video storytelling layer
-- Stats.jsx → Animated business metrics
-- Retail.jsx → Retail performance & positioning
-- Luxury.jsx → Premium audience targeting
-- Dining.jsx → Lifestyle + spend behavior
-- Entertainment.jsx → Attraction ecosystem
-- Events.jsx → Event platform positioning
-- EventDetails.jsx → Expandable module
-- Leasing.jsx → Business conversion flow
-- Sponsorship.jsx → Brand partnerships
-- CTA.jsx → Final conversion actions
+- Hero.jsx → cinematic entry + scale statement
+- Immersive.jsx → scroll-based video storytelling
+- Stats.jsx → animated metrics (100M+ visitors)
+- Retail.jsx → retail positioning + brand ecosystem
+- Luxury.jsx → premium audience targeting
+- Dining.jsx → lifestyle + spend insights
+- Entertainment.jsx → attraction ecosystem
+- Events.jsx → event platform positioning
+- EventDetails.jsx → expandable event module
+- Leasing.jsx → leasing funnel
+- Sponsorship.jsx → brand partnerships
+- CTA.jsx → final conversion actions
 
 ---
 
@@ -107,118 +121,146 @@ src/sections/
 
 ### Cinematic Experience
 - Fullscreen video hero
-- Scroll-based animations
-- Visual storytelling instead of static slides
+- Scroll-triggered animations
+- Minimal UI, maximum visual impact
 
-### Business-Driven Storytelling
+### Business-Focused Storytelling
 - Footfall metrics
-- Retail conversion insights
-- Luxury audience positioning
-- Event scale and platform value
+- Brand positioning
+- Revenue potential insights
+- Event platform scale
 
 ### Interactive Navigation
-- Non-linear section navigation
-- Smooth scroll behavior
-- User-controlled exploration
+- Non-linear navigation
+- Smooth scrolling
+- Section-based exploration
 
-### Conversion-Oriented Design
+### Conversion System
 - Leasing CTA
-- Visit planning system
+- Visit planner
 - Interactive map
 - Form validation
 
 ---
 
-## AI Integration (EXPLICIT)
+## AI Integration
 
-AI was used as a core part of both design and development workflow.
+AI was used intentionally across the product workflow.
 
 ### Tools Used
-- ChatGPT (for content, structure, and logic)
-- AI-assisted design reasoning (layout, UX hierarchy)
-- AI-supported asset selection and enhancement
+- ChatGPT (content, logic, structure)
+- AI-assisted design thinking (UX, layout decisions)
 
-### Where AI Was Applied
+### Application Areas
 
-1. Content & Storytelling
-   - Generated business-focused copy (Retail, Luxury, Events)
-   - Crafted scale statements (e.g., "100M+ visitors")
-   - Structured narrative flow like a real sales deck
+1. Content & Narrative  
+- Business storytelling (Retail, Luxury, Events)  
+- Scale messaging (100M+ visitors, brand density)  
+- Structured pitch flow  
 
-2. UI/UX Design Decisions
-   - Section hierarchy planning
-   - Layout structuring for clarity and impact
-   - Interaction patterns inspired by premium platforms
+2. UI/UX Design  
+- Section hierarchy  
+- Layout composition  
+- Interaction planning  
 
-3. Code & Architecture
-   - Component structuring (modular sections)
-   - Performance optimization strategies
-   - Animation logic using Framer Motion
+3. Code & Architecture  
+- Component modularization  
+- Performance strategies  
+- Animation logic  
 
-4. Visual Enhancement
-   - Selection and refinement of imagery
-   - Maintaining consistent premium aesthetic
+4. Visual Enhancement  
+- Asset selection  
+- Consistent premium aesthetic  
 
 ---
 
-## Simulated "Innovation Layer" (WOW Factor)
+## Innovation Layer (Simulated Intelligence)
 
-While real-time data integration is not connected, the system simulates intelligent decision support:
+The platform includes simulated intelligence features:
 
-### 1. Smart Visit Suggestions
-- Based on selected time slot, system provides insights:
-  - Morning → Dining & lifestyle
-  - Afternoon → Retail engagement
-  - Evening → Luxury & entertainment peak
+### Smart Visit Suggestions
+- Morning → Dining focus  
+- Afternoon → Retail engagement  
+- Evening → Luxury + entertainment peak  
 
-### 2. Business-Oriented Metrics
-- Retail section highlights conversion potential
-- Events section shows audience scale
-- Dining section reflects spending behavior
+### Business Insights
+- Retail conversion positioning  
+- Event audience scale  
+- Dining spend behavior  
 
-### 3. Modular Expansion Ready
-- EventDetails module can expand into booking system
-- Sponsorship module can integrate real analytics
-- Dashboard module supports future live data
-
-This demonstrates how the platform can evolve into a fully data-driven sales system.
+### Expandable Architecture
+- Event module → booking system ready  
+- Sponsorship → analytics ready  
+- Dashboard → future real-time integration  
 
 ---
 
 ## Performance
 
-- Lighthouse Score: 90+
-- Optimizations:
-  - Lazy loading images
-  - Video preload control
-  - Reduced motion support
-  - Efficient rendering
+Lighthouse Score:
+
+- Performance: 92+  
+- Accessibility: 100  
+- Best Practices: 100  
+- SEO: 90+  
+
+Optimizations:
+- Lazy loading images
+- Video preload control
+- Reduced motion support
+- Optimized rendering
+
+---
+
+## Screenshots
+
+Location:  
+screenshots/
+
+Included:
+
+- hero.png → cinematic entry section  
+- intro.png → intro experience  
+- brands.png → brand ecosystem  
+- retail.png → retail positioning  
+- luxury.png → luxury experience  
+- events.png → event storytelling  
+- leasing.png → leasing module  
+- visit.png → visit planner UI  
+- lighthouse.png → performance audit  
+
+These screenshots validate UI quality, interaction flow, and performance.
 
 ---
 
 ## Demo Video
 
-Location:
+Location:  
 demo-video/demo.mp4
 
 Covers:
 - Full navigation flow
-- Animations and transitions
-- User interactions
-- Overall experience
+- Scroll interactions
+- Video storytelling
+- CTA and conversions
 
 ---
 
 ## Deployment
+
+Live Production URL:  
+https://mall-deck-app.vercel.app/
 
 Supported platforms:
 - Vercel
 - Netlify
 - GitHub Pages
 
-Build:
-
+Build command:
 npm run build
+
+Preview production build:
+npm run preview
 
 ---
 
@@ -226,28 +268,31 @@ npm run build
 
 cd C:\mall-deck\mall-deck-app  
 npm install  
+
+Development mode:
 npm run dev  
 
-Open:
-http://localhost:4713/
+Production preview:
+npm run build  
+npm run preview  
 
 ---
 
 ## Design Approach
 
-- Minimal, premium, and cinematic
-- Inspired by Apple, Tesla, luxury brand platforms
-- Focused on decision-makers (not casual users)
-- Built as a product, not just a UI
+- Premium and minimal UI
+- Inspired by Apple, Tesla, luxury brands
+- Built for decision-makers
+- Focus on clarity, scale, and conversion
 
 ---
 
 ## What This Project Demonstrates
 
-- Product thinking over static development
-- Modular and scalable architecture
-- Strong performance optimization
-- Business-driven storytelling
+- Product thinking over static UI
+- Scalable architecture
+- Performance optimization
+- Business storytelling
 - Effective AI-assisted workflow
 
 ---
@@ -256,8 +301,8 @@ http://localhost:4713/
 
 - Real-time analytics integration
 - AI personalization (brand-specific insights)
-- Multi-layer video storytelling
 - Advanced sponsorship dashboards
+- Multi-layer video storytelling
 
 ---
 
