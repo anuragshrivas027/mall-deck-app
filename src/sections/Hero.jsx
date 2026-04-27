@@ -2,12 +2,9 @@ import { useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 export default function Hero() {
-  const [loadVideo, setLoadVideo] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => setLoadVideo(true), 300);
-
     const checkDevice = () => {
       setIsMobile(window.innerWidth < 768);
     };
@@ -15,10 +12,7 @@ export default function Hero() {
     checkDevice();
     window.addEventListener("resize", checkDevice);
 
-    return () => {
-      clearTimeout(timer);
-      window.removeEventListener("resize", checkDevice);
-    };
+    return () => window.removeEventListener("resize", checkDevice);
   }, []);
 
   const { scrollY } = useScroll();
@@ -30,26 +24,32 @@ export default function Hero() {
   return (
     <div className="h-screen w-full relative overflow-hidden">
 
-      {loadVideo && !isMobile ? (
+      {/* 🎥 VIDEO — ALWAYS VISIBLE */}
+      {!isMobile && (
         <motion.video
           src="/hero.mp4"
           autoPlay
           loop
           muted
           playsInline
-          preload="none"
-          style={{ scale, opacity }}
+          preload="auto"
+          style={{ scale }}
           className="absolute w-full h-full object-cover"
         />
-      ) : (
+      )}
+
+      {/* 📱 MOBILE */}
+      {isMobile && (
         <div
           className="absolute w-full h-full bg-cover bg-center"
           style={{ backgroundImage: "url('/hero.jpg')" }}
         />
       )}
 
-      <div className="absolute inset-0 bg-black/70 z-10" />
+      {/* OVERLAY */}
+      <div className="absolute inset-0 bg-black/65 z-10" />
 
+      {/* CONTENT — appears with video */}
       <motion.div
         style={{ y, opacity }}
         className="relative z-20 h-full flex flex-col items-center justify-center text-center px-6"

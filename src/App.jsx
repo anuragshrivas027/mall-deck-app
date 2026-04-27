@@ -39,9 +39,10 @@ function Loader() {
 
 export default function App() {
   const [entered, setEntered] = useState(false);
+  const [showTransition, setShowTransition] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  /* 🔥 CURSOR (optimized) */
+  /* 🔥 CURSOR */
   const [cursor, setCursor] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
@@ -109,17 +110,32 @@ export default function App() {
 
       {loading && <Loader />}
 
-      {!entered && !loading && (
-        <Intro onEnter={() => setEntered(true)} />
+      {/* INTRO */}
+      {!entered && !loading && !showTransition && (
+        <Intro onEnter={() => setShowTransition(true)} />
       )}
 
+      {/* 🔥 CLEAN TRANSITION (NO VIDEO) */}
+      {showTransition && !entered && (
+        <motion.div
+          className="fixed inset-0 bg-black z-[999]"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          onAnimationComplete={() => {
+            setTimeout(() => setEntered(true), 300);
+          }}
+        />
+      )}
+
+      {/* MAIN APP */}
       <AnimatePresence mode="wait">
         {entered && !loading && (
           <motion.div
             key="main"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+            transition={{ duration: 0.6 }}
           >
             <Navbar />
 
@@ -155,7 +171,7 @@ export default function App() {
               </main>
             </Suspense>
 
-            {/* 🔥 WOW LAYER */}
+            {/* 🔥 INSIGHT PANEL */}
             <InsightPanel insight={insight} />
 
           </motion.div>
