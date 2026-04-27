@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 
 export default function Hero() {
   const [isMobile, setIsMobile] = useState(false);
+  const [videoReady, setVideoReady] = useState(false);
 
   useEffect(() => {
     const checkDevice = () => {
@@ -24,7 +25,7 @@ export default function Hero() {
   return (
     <div className="h-screen w-full relative overflow-hidden">
 
-      {/* 🎥 VIDEO — ALWAYS VISIBLE */}
+      {/* 🎥 VIDEO (DESKTOP ONLY) */}
       {!isMobile && (
         <motion.video
           src="/hero.mp4"
@@ -33,12 +34,16 @@ export default function Hero() {
           muted
           playsInline
           preload="auto"
-          style={{ scale }}
+          onLoadedData={() => setVideoReady(true)}
+          style={{
+            scale,
+            opacity: videoReady ? 1 : 0
+          }}
           className="absolute w-full h-full object-cover"
         />
       )}
 
-      {/* 📱 MOBILE */}
+      {/* 📱 MOBILE FALLBACK */}
       {isMobile && (
         <div
           className="absolute w-full h-full bg-cover bg-center"
@@ -46,10 +51,10 @@ export default function Hero() {
         />
       )}
 
-      {/* OVERLAY */}
+      {/* 🔥 SAFE OVERLAY (works for both) */}
       <div className="absolute inset-0 bg-black/65 z-10" />
 
-      {/* CONTENT — appears with video */}
+      {/* CONTENT */}
       <motion.div
         style={{ y, opacity }}
         className="relative z-20 h-full flex flex-col items-center justify-center text-center px-6"
