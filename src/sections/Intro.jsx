@@ -1,16 +1,6 @@
 import { motion } from "framer-motion";
-import { useEffect } from "react";
 
 export default function Intro({ onEnter }) {
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      onEnter();
-    }, 6000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <div className="fixed inset-0 z-[999] bg-black">
 
@@ -19,7 +9,7 @@ export default function Intro({ onEnter }) {
         autoPlay
         muted
         playsInline
-        className="absolute w-full h-full object-cover opacity-80"
+        className="absolute w-full h-full object-cover opacity-80 scale-90"
       />
 
       <div className="absolute inset-0 bg-black/60" />

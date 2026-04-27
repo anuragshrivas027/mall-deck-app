@@ -3,35 +3,50 @@ import { motion, useScroll, useTransform } from "framer-motion";
 
 export default function Hero() {
   const [loadVideo, setLoadVideo] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => setLoadVideo(true), 300);
+
+    // detect mobile
+    if (window.innerWidth < 768) {
+      setIsMobile(true);
+    }
+
     return () => clearTimeout(timer);
   }, []);
 
   const { scrollY } = useScroll();
 
-  const scale = useTransform(scrollY, [0, 600], [1, 1.2]);
+  const scale = useTransform(scrollY, [0, 600], [1, 1.15]);
   const opacity = useTransform(scrollY, [0, 500], [1, 0]);
   const y = useTransform(scrollY, [0, 400], [0, -120]);
 
   return (
     <div className="h-screen w-full relative overflow-hidden">
 
-      {loadVideo && (
+      {/* VIDEO OR FALLBACK */}
+      {loadVideo && !isMobile ? (
         <motion.video
           src="/hero.mp4"
           autoPlay
           loop
           muted
           playsInline
-          preload="none"   // ✅ performance fix
+          preload="none"
           style={{ scale, opacity }}
           className="absolute w-full h-full object-cover"
         />
+      ) : (
+        <div
+          className="absolute w-full h-full bg-cover bg-center"
+          style={{
+            backgroundImage: "url('/hero.jpg')", // 👉 add one fallback image
+          }}
+        />
       )}
 
-      {/* cinematic overlay */}
+      {/* overlay */}
       <div className="absolute inset-0 bg-black/70 z-10" />
 
       <motion.div
@@ -42,18 +57,16 @@ export default function Hero() {
           Galleria Mall
         </h1>
 
-        {/* 🔥 SCALE STATEMENT */}
         <p className="mt-4 text-white text-lg md:text-xl font-medium">
           100M+ Annual Visitors · 500+ Brands · Global Destination
         </p>
 
         <p className="mt-4 text-muted max-w-xl text-lg">
-          A next-generation retail, entertainment, and brand activation ecosystem built for scale.
+          A next-generation retail, entertainment, and brand activation ecosystem.
         </p>
 
-        {/* 🔥 BUSINESS HOOK */}
         <p className="text-sm text-muted mt-3">
-          Unlock leasing, sponsorship, and event opportunities in one unified platform
+          Leasing · Sponsorship · Events
         </p>
 
         <button

@@ -9,6 +9,7 @@ export default function CTA() {
 
   const [form, setForm] = useState({
     name: "",
+    phone: "",
     date: "",
     time: "",
   });
@@ -23,8 +24,13 @@ export default function CTA() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!form.name || !form.date || !form.time) {
+    if (!form.name || !form.phone || !form.date || !form.time) {
       setError("Please fill all fields");
+      return;
+    }
+
+    if (!/^[0-9]{10}$/.test(form.phone)) {
+      setError("Enter valid 10-digit mobile number");
       return;
     }
 
@@ -38,7 +44,7 @@ export default function CTA() {
       setTimeout(() => {
         setSubmitted(false);
         setActive(null);
-        setForm({ name: "", date: "", time: "" });
+        setForm({ name: "", phone: "", date: "", time: "" });
       }, 2000);
     }, 1200);
   };
@@ -58,8 +64,7 @@ export default function CTA() {
       </h2>
 
       <p className="mt-6 max-w-2xl text-muted text-lg">
-        Explore spaces, analyze performance, and onboard your brand into a
-        high-value retail ecosystem.
+        Explore spaces, analyze performance, and onboard your brand.
       </p>
 
       <div className="flex gap-6 mt-10 flex-wrap justify-center">
@@ -76,7 +81,6 @@ export default function CTA() {
         </button>
       </div>
 
-      {/* MODAL */}
       <AnimatePresence>
         {active && (
           <motion.div
@@ -93,31 +97,7 @@ export default function CTA() {
               exit={{ scale: 0.9, opacity: 0 }}
             >
 
-              {/* ================= MAP ================= */}
-              {active === "map" && (
-                <>
-                  <h3 className="text-2xl font-bold text-center">
-                    Mall Navigation
-                  </h3>
-
-                  <p className="mt-4 text-muted text-center">
-                    Click to zoom and explore mall layout.
-                  </p>
-
-                  <div className="mt-6 rounded-xl overflow-hidden border border-white/10">
-                    <img
-                      src="/map.jpg"
-                      alt="Mall Map"
-                      className="w-full max-h-[400px] object-contain cursor-zoom-in transition"
-                      onClick={(e) =>
-                        e.target.classList.toggle("scale-150")
-                      }
-                    />
-                  </div>
-                </>
-              )}
-
-              {/* ================= VISIT ================= */}
+              {/* VISIT */}
               {active === "visit" && (
                 <>
                   {!submitted ? (
@@ -126,18 +106,9 @@ export default function CTA() {
                         Visit Information
                       </h3>
 
-                      <p className="mt-4 text-muted text-center">
-                        Open daily: 10 AM – 12 AM
-                      </p>
-
-                      <p className="text-muted text-center mt-2">
-                        Gurugram, India
-                      </p>
-
-                      {/* FORM */}
                       <form
                         onSubmit={handleSubmit}
-                        className="mt-8 space-y-4 text-left"
+                        className="mt-8 space-y-4"
                       >
                         <input
                           type="text"
@@ -146,7 +117,17 @@ export default function CTA() {
                           onChange={(e) =>
                             setForm({ ...form, name: e.target.value })
                           }
-                          className="w-full p-3 bg-black/40 border border-white/20 rounded outline-none"
+                          className="w-full p-3 bg-black/40 border border-white/20 rounded"
+                        />
+
+                        <input
+                          type="tel"
+                          placeholder="Mobile Number"
+                          value={form.phone}
+                          onChange={(e) =>
+                            setForm({ ...form, phone: e.target.value })
+                          }
+                          className="w-full p-3 bg-black/40 border border-white/20 rounded"
                         />
 
                         <input
@@ -155,7 +136,7 @@ export default function CTA() {
                           onChange={(e) =>
                             setForm({ ...form, date: e.target.value })
                           }
-                          className="w-full p-3 bg-black/40 border border-white/20 rounded outline-none"
+                          className="w-full p-3 bg-black/40 border border-white/20 rounded"
                         />
 
                         <select
@@ -163,23 +144,16 @@ export default function CTA() {
                           onChange={(e) =>
                             setForm({ ...form, time: e.target.value })
                           }
-                          className="w-full p-3 bg-black/40 border border-white/20 rounded outline-none"
+                          className="w-full p-3 bg-black/40 border border-white/20 rounded"
                         >
                           <option value="">Select Time Slot</option>
-                          <option value="10-1">Morning (10 AM - 1 PM)</option>
-                          <option value="1-5">Afternoon (1 PM - 5 PM)</option>
-                          <option value="5-9">Evening (5 PM - 9 PM)</option>
+                          <option value="10-1">Morning</option>
+                          <option value="1-5">Afternoon</option>
+                          <option value="5-9">Evening</option>
                         </select>
 
-                        {error && (
-                          <p className="text-red-400 text-sm">{error}</p>
-                        )}
-
-                        {loading && (
-                          <p className="text-muted text-sm">
-                            Analyzing your visit...
-                          </p>
-                        )}
+                        {error && <p className="text-red-400 text-sm">{error}</p>}
+                        {loading && <p className="text-muted">Processing...</p>}
 
                         <button className="btn-premium w-full">
                           Confirm Visit
@@ -188,10 +162,7 @@ export default function CTA() {
                     </>
                   ) : (
                     <div className="text-center py-10">
-                      <h3 className="text-2xl font-bold">
-                        Visit Scheduled ✓
-                      </h3>
-
+                      <h3 className="text-2xl font-bold">Visit Scheduled ✓</h3>
                       <p className="mt-3 text-muted">
                         {getBrandSuggestion(form.time)}
                       </p>
@@ -200,7 +171,6 @@ export default function CTA() {
                 </>
               )}
 
-              {/* CLOSE */}
               <button
                 onClick={() => setActive(null)}
                 className="btn-premium mt-8 w-full"
