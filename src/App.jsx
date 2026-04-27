@@ -100,6 +100,17 @@ export default function App() {
   return (
     <div className="bg-primary text-white">
 
+      {/* 🔥 PRELOAD HERO VIDEO (KEY FIX) */}
+      {!entered && (
+        <video
+          src="/hero.mp4"
+          preload="auto"
+          muted
+          playsInline
+          style={{ display: "none" }}
+        />
+      )}
+
       {/* 🔥 CURSOR */}
       <div
         className="cursor-glow"
@@ -115,7 +126,7 @@ export default function App() {
         <Intro onEnter={() => setShowTransition(true)} />
       )}
 
-      {/* 🔥 CLEAN TRANSITION (NO VIDEO) */}
+      {/* TRANSITION */}
       {showTransition && !entered && (
         <motion.div
           className="fixed inset-0 bg-black z-[999]"
@@ -171,7 +182,7 @@ export default function App() {
               </main>
             </Suspense>
 
-            {/* 🔥 INSIGHT PANEL */}
+            {/* INSIGHT PANEL */}
             <InsightPanel insight={insight} />
 
           </motion.div>

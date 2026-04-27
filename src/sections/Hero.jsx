@@ -11,27 +11,17 @@ export default function Hero() {
   const opacity = useTransform(scrollY, [0, 500], [1, 0]);
   const y = useTransform(scrollY, [0, 400], [0, -100]);
 
-  /* 🔥 FORCE PLAY (fix mobile autoplay issue) */
   useEffect(() => {
     const video = videoRef.current;
 
     if (video) {
-      const tryPlay = async () => {
-        try {
-          await video.play();
-        } catch (err) {
-          console.log("Autoplay blocked:", err);
-        }
-      };
-
-      tryPlay();
+      video.play().catch(() => {});
     }
   }, []);
 
   return (
     <div className="h-screen w-full relative overflow-hidden bg-black">
 
-      {/* 🎥 VIDEO (ALL DEVICES) */}
       <motion.video
         ref={videoRef}
         src="/hero.mp4"
@@ -39,16 +29,15 @@ export default function Hero() {
         loop
         muted
         playsInline
-        preload="auto"
+        preload="auto"   // 🔥 changed
         onLoadedData={() => setVideoReady(true)}
         style={{
           scale,
-          opacity: videoReady ? 1 : 0
+          opacity: videoReady ? 1 : 0.01
         }}
         className="absolute w-full h-full object-cover"
       />
 
-      {/* 🖼️ FALLBACK (until video loads or fails) */}
       {!videoReady && (
         <div
           className="absolute w-full h-full bg-cover bg-center"
@@ -56,10 +45,8 @@ export default function Hero() {
         />
       )}
 
-      {/* OVERLAY */}
       <div className="absolute inset-0 bg-black/65 z-10" />
 
-      {/* CONTENT */}
       <motion.div
         style={{ y, opacity }}
         className="relative z-20 h-full flex flex-col items-center justify-center text-center px-6"
