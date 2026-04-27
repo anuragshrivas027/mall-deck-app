@@ -1,12 +1,9 @@
 # Galleria Mall Interactive Sales Deck
 
-## Live Demo
+## Live Deployment Link
 
-Live Interactive Demo:  
+Live Deployment Vercel Link:  
 https://mall-deck-app.vercel.app/
-
-Local Preview (Production Build):  
-http://localhost:4173/
 
 Demo Video:  
 demo-video/demo.mp4
