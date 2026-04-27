@@ -64,10 +64,11 @@ h1, h2 {
   color: #9ca3af;
 }
 
-/* GLASS (premium upgrade) */
+/* GLASS */
 .glass {
   background: rgba(255,255,255,0.05);
   backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255,255,255,0.08);
 }
 
@@ -78,40 +79,19 @@ h1, h2 {
     0 1px 2px rgba(255,255,255,0.05);
 }
 
-/* HOVER */
-.hover-lift {
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
-.hover-lift:hover {
-  transform: translateY(-10px) scale(1.02);
-  box-shadow: 0 30px 80px rgba(0,0,0,0.9);
-}
-
-/* BRAND LOGO */
-.brand-logo {
-  opacity: 0.6;
-  filter: grayscale(100%);
-  transition: all 0.3s ease;
-}
-.brand-logo:hover {
-  opacity: 1;
-  filter: grayscale(0%);
-  transform: scale(1.1);
-}
-
-/* BUTTON (premium interaction) */
+/* BUTTON FIX (IMPORTANT) */
 .btn-premium {
+  position: relative;
+  z-index: 1;
   border: 1px solid rgba(255,255,255,0.3);
   padding: 12px 32px;
   font-size: 11px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  position: relative;
   overflow: hidden;
   transition: all 0.3s ease;
 }
 
-/* GOLD FILL */
 .btn-premium::after {
   content: "";
   position: absolute;
@@ -122,21 +102,21 @@ h1, h2 {
   z-index: -1;
 }
 
-/* HOVER */
 .btn-premium:hover::after {
   transform: translateY(0);
 }
+
 .btn-premium:hover {
   color: black;
 }
 
-/* CLICK (FIXED ISSUE YOU MENTIONED) */
 .btn-premium:active::after {
   transform: translateY(0);
 }
+
 .btn-premium:active {
   color: black;
-  transform: scale(0.96); /* premium press feedback */
+  transform: scale(0.96);
 }
 
 /* INPUT */
@@ -145,7 +125,7 @@ input, select {
   border: 1px solid rgba(255,255,255,0.1);
 }
 
-/* CURSOR GLOW (GPU optimized) */
+/* CURSOR */
 .cursor-glow {
   position: fixed;
   width: 300px;

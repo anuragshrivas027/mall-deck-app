@@ -37,9 +37,9 @@ export default function Stats() {
 
       <div className="flex gap-10 mt-10 text-sm text-gray-400 flex-wrap justify-center">
         <span>1200+ Stores</span>
-        <span>200+ Dining Brands</span>
-        <span>15+ Attractions</span>
-        <span>270K+ Daily Footfall</span>
+        <span>220+ Dining Brands</span>
+        <span>25+ Attractions</span>
+        <span>320K+ Daily Footfall</span>
       </div>
 
     </div>

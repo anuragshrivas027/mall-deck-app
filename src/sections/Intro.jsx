@@ -1,6 +1,13 @@
 import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 
 export default function Intro({ onEnter }) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+  }, []);
+
   return (
     <div className="fixed inset-0 z-[999] bg-black">
 
@@ -9,7 +16,11 @@ export default function Intro({ onEnter }) {
         autoPlay
         muted
         playsInline
-        className="absolute w-full h-full object-cover opacity-80 scale-90"
+        className={`absolute w-full h-full object-cover opacity-80 ${
+          isMobile
+            ? "scale-[1.6] object-[center_25%]" // 🔥 FULL FIX
+            : ""
+        }`}
       />
 
       <div className="absolute inset-0 bg-black/60" />

@@ -69,15 +69,15 @@ export default function CTA() {
 
       <div className="flex gap-6 mt-10 flex-wrap justify-center">
         <button onClick={() => setActive("map")} className="btn-premium">
-          Mall Map
+          Explore Mall Map
         </button>
 
         <button onClick={goToLeasing} className="btn-premium">
-          Start Leasing
+          Activate Retail Presence
         </button>
 
         <button onClick={() => setActive("visit")} className="btn-premium">
-          Plan Visit
+          Schedule Visit
         </button>
       </div>
 
@@ -89,7 +89,6 @@ export default function CTA() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-
             <motion.div
               className="w-full max-w-2xl glass rounded-2xl overflow-y-auto max-h-[85vh] p-8"
               initial={{ scale: 0.9, opacity: 0 }}
@@ -97,7 +96,43 @@ export default function CTA() {
               exit={{ scale: 0.9, opacity: 0 }}
             >
 
-              {/* VISIT */}
+              {/* ================= MAP ================= */}
+              {active === "map" && (
+                <>
+                  <h3 className="text-2xl font-bold text-center">
+                    Mall Navigation
+                  </h3>
+
+                  <p className="mt-4 text-muted text-center">
+                    Explore layout and key zones inside Galleria Mall.
+                  </p>
+
+                  <div className="mt-6 rounded-xl overflow-hidden border border-white/10">
+                    <img
+                      src="/map.jpg"
+                      alt="Mall Map"
+                      className="w-full max-h-[400px] object-contain cursor-zoom-in transition duration-300"
+                      onClick={(e) =>
+                        e.currentTarget.classList.toggle("scale-150")
+                      }
+                    />
+                  </div>
+
+                  <p className="text-xs text-muted mt-4 text-center">
+                    Click to zoom in / out
+                  </p>
+
+                  {/* optional premium touch */}
+                  <div className="grid grid-cols-2 gap-4 mt-6 text-sm">
+                    <div className="glass p-3">Luxury Wing</div>
+                    <div className="glass p-3">Retail Zone</div>
+                    <div className="glass p-3">Dining Hub</div>
+                    <div className="glass p-3">Event Arena</div>
+                  </div>
+                </>
+              )}
+
+              {/* ================= VISIT ================= */}
               {active === "visit" && (
                 <>
                   {!submitted ? (
@@ -152,8 +187,12 @@ export default function CTA() {
                           <option value="5-9">Evening</option>
                         </select>
 
-                        {error && <p className="text-red-400 text-sm">{error}</p>}
-                        {loading && <p className="text-muted">Processing...</p>}
+                        {error && (
+                          <p className="text-red-400 text-sm">{error}</p>
+                        )}
+                        {loading && (
+                          <p className="text-muted">Processing...</p>
+                        )}
 
                         <button className="btn-premium w-full">
                           Confirm Visit
@@ -162,7 +201,9 @@ export default function CTA() {
                     </>
                   ) : (
                     <div className="text-center py-10">
-                      <h3 className="text-2xl font-bold">Visit Scheduled ✓</h3>
+                      <h3 className="text-2xl font-bold">
+                        Visit Scheduled ✓
+                      </h3>
                       <p className="mt-3 text-muted">
                         {getBrandSuggestion(form.time)}
                       </p>
@@ -171,6 +212,7 @@ export default function CTA() {
                 </>
               )}
 
+              {/* CLOSE */}
               <button
                 onClick={() => setActive(null)}
                 className="btn-premium mt-8 w-full"

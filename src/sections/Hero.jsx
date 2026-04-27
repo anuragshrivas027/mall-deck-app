@@ -8,24 +8,28 @@ export default function Hero() {
   useEffect(() => {
     const timer = setTimeout(() => setLoadVideo(true), 300);
 
-    // detect mobile
-    if (window.innerWidth < 768) {
-      setIsMobile(true);
-    }
+    const checkDevice = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
 
-    return () => clearTimeout(timer);
+    checkDevice();
+    window.addEventListener("resize", checkDevice);
+
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener("resize", checkDevice);
+    };
   }, []);
 
   const { scrollY } = useScroll();
 
-  const scale = useTransform(scrollY, [0, 600], [1, 1.15]);
+  const scale = useTransform(scrollY, [0, 600], [1, 1.1]);
   const opacity = useTransform(scrollY, [0, 500], [1, 0]);
-  const y = useTransform(scrollY, [0, 400], [0, -120]);
+  const y = useTransform(scrollY, [0, 400], [0, -100]);
 
   return (
     <div className="h-screen w-full relative overflow-hidden">
 
-      {/* VIDEO OR FALLBACK */}
       {loadVideo && !isMobile ? (
         <motion.video
           src="/hero.mp4"
@@ -40,13 +44,10 @@ export default function Hero() {
       ) : (
         <div
           className="absolute w-full h-full bg-cover bg-center"
-          style={{
-            backgroundImage: "url('/hero.jpg')", // 👉 add one fallback image
-          }}
+          style={{ backgroundImage: "url('/hero.jpg')" }}
         />
       )}
 
-      {/* overlay */}
       <div className="absolute inset-0 bg-black/70 z-10" />
 
       <motion.div
@@ -58,11 +59,11 @@ export default function Hero() {
         </h1>
 
         <p className="mt-4 text-white text-lg md:text-xl font-medium">
-          100M+ Annual Visitors · 500+ Brands · Global Destination
+          120M+ Visitors · 500+ Brands · Global Destination
         </p>
 
         <p className="mt-4 text-muted max-w-xl text-lg">
-          A next-generation retail, entertainment, and brand activation ecosystem.
+          A high-performance retail, entertainment, and brand activation ecosystem.
         </p>
 
         <p className="text-sm text-muted mt-3">
@@ -77,12 +78,8 @@ export default function Hero() {
           }
           className="btn-premium mt-10"
         >
-          Explore
+          Explore Experience
         </button>
-
-        <div className="mt-6 text-sm text-gray-400">
-          Scroll ↓
-        </div>
       </motion.div>
     </div>
   );

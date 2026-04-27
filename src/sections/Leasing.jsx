@@ -97,11 +97,11 @@ export default function Leasing() {
           </div>
 
           {/* DASHBOARD */}
-          <div className="grid grid-cols-3 gap-4 mt-6">
-            <div className="glass p-4">Footfall: High</div>
-            <div className="glass p-4">Conversion: 2.5x</div>
-            <div className="glass p-4">Risk: Low</div>
-          </div>
+          <div className="grid grid-cols-3 gap-4 mt-6 text-sm">
+  <div className="glass p-4">120M+ Visitors</div>
+  <div className="glass p-4">Avg Spend ₹4,200</div>
+  <div className="glass p-4">Conversion 3.2%</div>
+</div>
 
         </div>
       )}
