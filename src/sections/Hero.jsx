@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 export default function Hero() {
-  const [videoReady, setVideoReady] = useState(false);
+  const [videoReady, setVideoReady] = useState(true); // 🔥 changed
   const videoRef = useRef(null);
 
   const { scrollY } = useScroll();
@@ -29,21 +29,16 @@ export default function Hero() {
         loop
         muted
         playsInline
-        preload="auto"   // 🔥 changed
-        onLoadedData={() => setVideoReady(true)}
+        preload="auto"
         style={{
           scale,
-          opacity: videoReady ? 1 : 0.01
+          opacity: 1 // 🔥 always visible
         }}
         className="absolute w-full h-full object-cover"
       />
 
-      {!videoReady && (
-        <div
-          className="absolute w-full h-full bg-cover bg-center"
-          style={{ backgroundImage: "url('/hero.jpg')" }}
-        />
-      )}
+      {/* ❌ removed delay fallback dependency */}
+      {/* (kept your structure but now it won't block video) */}
 
       <div className="absolute inset-0 bg-black/65 z-10" />
 
