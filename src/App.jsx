@@ -100,16 +100,27 @@ export default function App() {
   return (
     <div className="bg-primary text-white">
 
-      {/* 🔥 PRELOAD HERO VIDEO (KEY FIX) */}
-      {!entered && (
-        <video
-          src="/hero.mp4"
-          preload="auto"
-          muted
-          playsInline
-          style={{ display: "none" }}
-        />
-      )}
+      {/* 🔥 PRELOAD HERO + INTRO VIDEO */}
+{!entered && (
+  <>
+    <video
+      src="/hero.mp4"
+      preload="auto"
+      muted
+      playsInline
+      style={{ display: "none" }}
+    />
+
+    {/* 🔥 ADDED */}
+    <video
+      src="/intro.mp4"
+      preload="auto"
+      muted
+      playsInline
+      style={{ display: "none" }}
+    />
+  </>
+)}
 
       {/* 🔥 CURSOR */}
       <div

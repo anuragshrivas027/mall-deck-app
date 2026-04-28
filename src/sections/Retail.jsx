@@ -52,7 +52,7 @@ export default function Retail() {
         >
           <div className="hover-lift shadow-soft rounded-2xl overflow-hidden">
             <img
-              src="https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?auto=format&fit=crop&w=1200&q=80"
+              src="/retail.jpg"
               loading="lazy"
               alt="Retail"
               className="w-full h-full object-cover grayscale contrast-110"

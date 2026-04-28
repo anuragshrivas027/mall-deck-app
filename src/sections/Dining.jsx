@@ -2,19 +2,28 @@ import { motion } from "framer-motion";
 
 export default function Dining() {
   return (
-    <div className="section flex flex-col items-center justify-center text-center px-6">
+    <div className="section relative flex flex-col items-center justify-center text-center px-6">
+
+      {/* 🔥 ADDED IMAGE */}
+      <img
+        src="/dining.jpg"
+        alt="Dining"
+        className="absolute w-full h-full object-cover"
+      />
+
+      <div className="absolute inset-0 bg-black/70" />
 
       <motion.h2
         initial={{ opacity: 0, y: 80 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
         viewport={{ once: true }}
-        className="text-4xl md:text-6xl font-bold"
+        className="relative z-10 text-4xl md:text-6xl font-bold"
       >
         By The Numbers
       </motion.h2>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-10 mt-16">
+      <div className="relative z-10 grid grid-cols-2 md:grid-cols-4 gap-10 mt-16">
 
         <Stat number="100M+" label="Annual Visitors" />
         <Stat number="1200+" label="Retail Stores" />
@@ -23,8 +32,7 @@ export default function Dining() {
 
       </div>
 
-      {/* 🔥 ADD REAL INSIGHT */}
-      <p className="mt-12 text-sm text-gray-400">
+      <p className="relative z-10 mt-12 text-sm text-gray-400">
         Average visitor dwell time: <strong>2.8 hours</strong> · High F&B spend conversion
       </p>
 

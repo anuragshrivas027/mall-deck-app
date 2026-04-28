@@ -119,10 +119,25 @@ mall-deck-app/
 
 ## Public Assets
 
+### 🎬 Videos
 * hero.mp4 → cinematic hero background (primary video)
 * intro.mp4 → intro experience
+* events.mp4 → event section cinematic background
+
+### 🖼 Images
 * map.jpg → interactive mall map
-* brand logos → Prada, Rolex, Dior, etc.
+* retail.jpg → retail section visual
+* luxury.jpg → luxury section visual
+* dining.jpg → dining section visual
+* entertainment.jpg → entertainment section visual
+* experience.jpg → experience section visual
+* overview.jpg → overview section visual
+* cta.jpg → CTA section visual
+* events.jpg → events fallback image
+* brand.png → brand visual assets
+
+### 🏷 Brand Logos
+* Prada, Rolex, Dior, Cartier, etc.
 
 ---
 
@@ -138,7 +153,7 @@ src/sections/
 * Dining.jsx → lifestyle + spend insights
 * Entertainment.jsx → attraction ecosystem
 * Events.jsx → event platform positioning
-* EventDetails.jsx → expandable event module
+* EventDetails.jsx → expandable event module + video background integration
 * Leasing.jsx → leasing funnel
 * Sponsorship.jsx → brand partnerships
 * CTA.jsx → final conversion actions
@@ -150,6 +165,7 @@ src/sections/
 ## Cinematic Experience
 
 * Fullscreen video hero
+* Instant video rendering (preloaded assets)
 * Smooth intro-to-hero transition
 * Scroll-triggered animations
 * Minimal UI, maximum visual impact
@@ -199,10 +215,11 @@ src/sections/
 
 ## Video Rendering Optimization
 
-* Single video source (no duplication)
-* Delayed playback handling to prevent flash frames
-* Mobile fallback using static image
-* Eliminated transition video to avoid re-render conflicts
+* Preloaded video assets (hero + intro)
+* Instant playback (no delay on interaction)
+* Mobile compatibility using playsInline
+* Fallback handling using static images where required
+* Controlled placement (video used only where impactful)
 
 ---
 

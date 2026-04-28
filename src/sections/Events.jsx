@@ -4,45 +4,49 @@ const ease = [0.22, 1, 0.36, 1];
 
 export default function Events() {
   return (
-    <div className="section px-10 md:px-20 py-20">
+    <div className="section relative px-10 md:px-20 py-20 overflow-hidden">
 
-      <motion.h2
-        initial={{ opacity: 0, y: 60 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, ease }}
-        viewport={{ once: true }}
-        className="text-4xl md:text-6xl font-bold text-center"
-      >
-        A Global Stage for Experiences
-      </motion.h2>
+      {/* 🔥 YOUR ORIGINAL CONTENT (UNCHANGED) */}
+      <div className="relative z-10">
 
-      {/* 🔥 BUSINESS CONTEXT */}
-      <p className="text-center text-muted mt-4">
-        300+ annual events · global brand activations · high-impact audience reach
-      </p>
+        <motion.h2
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease }}
+          viewport={{ once: true }}
+          className="text-4xl md:text-6xl font-bold text-center"
+        >
+          A Global Stage for Experiences
+        </motion.h2>
 
-      <div className="grid md:grid-cols-3 gap-12 mt-16">
+        {/* 🔥 BUSINESS CONTEXT */}
+        <p className="text-center text-muted mt-4">
+          300+ annual events · global brand activations · high-impact audience reach
+        </p>
 
-        <EventCard 
-          title="Global Performances"
-          metric="50K+ attendees"
-          image="https://images.unsplash.com/photo-1507874457470-272b3c8d8ee2?auto=format&fit=crop&w=1200&q=80"
-        />
+        <div className="grid md:grid-cols-3 gap-12 mt-16">
 
-        <EventCard 
-          title="Brand Experiences"
-          metric="High engagement zones"
-          image="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?auto=format&fit=crop&w=1200&q=80"
-        />
+          <EventCard 
+            title="Global Performances"
+            metric="50K+ attendees"
+            image="https://images.unsplash.com/photo-1507874457470-272b3c8d8ee2?auto=format&fit=crop&w=1200&q=80"
+          />
 
-        <EventCard 
-          title="Product Showcases"
-          metric="Global launches"
-          image="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=80"
-        />
+          <EventCard 
+            title="Brand Experiences"
+            metric="High engagement zones"
+            image="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?auto=format&fit=crop&w=1200&q=80"
+          />
+
+          <EventCard 
+            title="Product Showcases"
+            metric="Global launches"
+            image="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1200&q=80"
+          />
+
+        </div>
 
       </div>
-
     </div>
   );
 }

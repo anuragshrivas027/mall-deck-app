@@ -4,7 +4,7 @@ export default function Entertainment() {
 
       {/* Image instead of video */}
       <img
-        src="https://images.unsplash.com/photo-1511512578047-dfb367046420"
+        src="/entertainment.jpg"
         alt="Entertainment"
         loading="lazy"
         className="absolute w-full h-full object-cover"
