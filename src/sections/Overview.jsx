@@ -4,7 +4,6 @@ export default function Overview() {
   return (
     <div className="section relative flex flex-col justify-center px-10 md:px-20">
 
-      {/* BACKGROUND */}
       <img
         src="/overview.jpg"
         className="absolute w-full h-full object-cover"
@@ -12,8 +11,13 @@ export default function Overview() {
 
       <div className="absolute inset-0 bg-black/70" />
 
-      {/* CONTENT */}
       <div className="relative z-10">
+
+        {/* 🔥 ADDED */}
+        <p className="text-[10px] tracking-[0.4em] text-gray-400 mb-4">
+          SLIDE 02
+        </p>
+
         <motion.h2
           initial={{ opacity: 0, y: 80 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -31,6 +35,7 @@ export default function Overview() {
         >
           Galleria Mall is not just a retail destination — it is a high-performance commercial ecosystem...
         </motion.p>
+
       </div>
     </div>
   );

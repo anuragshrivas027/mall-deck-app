@@ -192,6 +192,22 @@ src/sections/
 
 ---
 
+## 🔥 ADDED: Deck Mode Experience (New)
+
+The platform behaves like a **modern interactive presentation (Digideck)**:
+
+* Section-to-section snapping navigation
+* Controlled scroll (deck-style flow)
+* Keyboard navigation (Arrow keys + Space)
+* Touchpad gesture support
+* Auto-play presentation mode
+* Slide progress indicator
+* Right-side minimap navigation
+
+This transforms the experience from a website into a **guided storytelling system**.
+
+---
+
 ## Advanced Engineering Enhancements
 
 ## Code Splitting (Performance Optimization)
@@ -220,6 +236,20 @@ src/sections/
 * Mobile compatibility using playsInline
 * Fallback handling using static images where required
 * Controlled placement (video used only where impactful)
+
+---
+
+## 🔥 ADDED: Interaction Engineering
+
+Additional interaction systems implemented:
+
+* Inertia-based scroll detection for smooth deck transitions
+* Magnetic cursor interaction on buttons
+* GPU-accelerated cursor glow rendering
+* Scroll locking with controlled navigation
+* Passive vs non-passive event handling for performance
+
+These improvements ensure a **premium, high-end interaction feel**.
 
 ---
 
@@ -393,6 +423,18 @@ npm run preview
 * Business-driven storytelling
 * AI-assisted workflow integration
 * Simulation of intelligent systems without backend dependency
+
+---
+
+## 🔥 ADDED: Interview Value
+
+This project demonstrates:
+
+* Ability to think beyond UI into product design
+* Understanding of performance + UX tradeoffs
+* Real-world business use case implementation
+* Strong frontend architecture using React ecosystem
+* Capability to build immersive, high-impact systems
 
 ---
 

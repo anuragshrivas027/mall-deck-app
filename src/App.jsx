@@ -42,9 +42,14 @@ export default function App() {
   const [showTransition, setShowTransition] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  /* 🔥 CURSOR */
   const [cursor, setCursor] = useState({ x: 0, y: 0 });
+  const [slideIndex, setSlideIndex] = useState(1);
+  const totalSlides = 14;
 
+  const [progress, setProgress] = useState(0);
+  const [autoPlay, setAutoPlay] = useState(false);
+
+  /* CURSOR */
   useEffect(() => {
     const move = (e) => {
       requestAnimationFrame(() => {
@@ -55,89 +60,188 @@ export default function App() {
     return () => window.removeEventListener("mousemove", move);
   }, []);
 
-  /* 🔥 LOADER */
+  /* LOADER */
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 1000);
     return () => clearTimeout(timer);
   }, []);
 
-  /* 🔥 INSIGHT ENGINE */
-  const [insight, setInsight] = useState("");
-
+  /* SLIDE INDEX */
   useEffect(() => {
-    let ticking = false;
+    const sections = document.querySelectorAll("section");
 
     const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const y = window.scrollY;
+      let index = 1;
 
-          if (y < 800) {
-            setInsight("100M+ annual visitors. High-impact entry exposure.");
-          } else if (y < 1600) {
-            setInsight("Retail zones driving maximum brand conversion.");
-          } else if (y < 2400) {
-            setInsight("Luxury segment attracting high-net-worth audience.");
-          } else if (y < 3200) {
-            setInsight("Dining & lifestyle extending visitor dwell time.");
-          } else if (y < 4200) {
-            setInsight("Event platform enabling global-scale activations.");
-          } else {
-            setInsight("Leasing, sponsorship, and event opportunities active.");
-          }
+      sections.forEach((section, i) => {
+        const top = section.offsetTop - 200;
+        if (window.scrollY >= top) {
+          index = i + 1;
+        }
+      });
 
-          ticking = false;
-        });
-
-        ticking = true;
-      }
+      setSlideIndex(index);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  /* PROGRESS */
+  useEffect(() => {
+    setProgress((slideIndex / totalSlides) * 100);
+  }, [slideIndex]);
+
+  /* INSIGHT */
+  const [insight, setInsight] = useState("");
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const y = window.scrollY;
+
+      if (y < 800) setInsight("100M+ annual visitors.");
+      else if (y < 1600) setInsight("Retail conversion zones.");
+      else if (y < 2400) setInsight("Luxury audience targeting.");
+      else if (y < 3200) setInsight("Dining increases dwell time.");
+      else if (y < 4200) setInsight("Event activation scale.");
+      else setInsight("Leasing & sponsorship opportunities.");
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  /* 🔥 TRUE DECK MODE (FIXED FOR TOUCHPAD + TOUCH) */
+  useEffect(() => {
+    const sections = Array.from(document.querySelectorAll("section"));
+    let currentIndex = 0;
+    let isScrolling = false;
+    let lastScrollTime = 0;
+
+    const scrollToSection = (index) => {
+      if (index < 0 || index >= sections.length) return;
+
+      isScrolling = true;
+
+      sections[index].scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+
+      currentIndex = index;
+
+      setTimeout(() => {
+        isScrolling = false;
+      }, 800);
+    };
+
+    const handleWheel = (e) => {
+      const now = Date.now();
+
+      if (isScrolling || now - lastScrollTime < 500) return;
+
+      if (Math.abs(e.deltaY) < 5) return; // 🔥 FIX: allow trackpad micro scroll
+
+      if (e.deltaY > 0) scrollToSection(currentIndex + 1);
+      else scrollToSection(currentIndex - 1);
+
+      lastScrollTime = now;
+      setAutoPlay(false);
+    };
+
+    /* 🔥 TOUCH SUPPORT */
+    let touchStartY = 0;
+
+    const handleTouchStart = (e) => {
+      touchStartY = e.touches[0].clientY;
+    };
+
+    const handleTouchEnd = (e) => {
+      const delta = touchStartY - e.changedTouches[0].clientY;
+
+      if (Math.abs(delta) < 50) return;
+
+      if (delta > 0) scrollToSection(currentIndex + 1);
+      else scrollToSection(currentIndex - 1);
+    };
+
+    window.addEventListener("wheel", handleWheel);
+    window.addEventListener("touchstart", handleTouchStart);
+    window.addEventListener("touchend", handleTouchEnd);
+
+    return () => {
+      window.removeEventListener("wheel", handleWheel);
+      window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("touchend", handleTouchEnd);
+    };
+  }, []);
+
+  /* AUTO PLAY */
+  useEffect(() => {
+    if (!autoPlay) return;
+
+    const sections = document.querySelectorAll("section");
+    let index = slideIndex - 1;
+
+    const interval = setInterval(() => {
+      if (index < sections.length - 1) {
+        index++;
+        sections[index].scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
+    }, 3500);
+
+    return () => clearInterval(interval);
+  }, [autoPlay, slideIndex]);
+
   return (
     <div className="bg-primary text-white">
 
-      {/* 🔥 PRELOAD HERO + INTRO VIDEO */}
-{!entered && (
-  <>
-    <video
-      src="/hero.mp4"
-      preload="auto"
-      muted
-      playsInline
-      style={{ display: "none" }}
-    />
+      {!entered && (
+        <>
+          <video src="/hero.mp4" preload="auto" muted playsInline style={{ display: "none" }} />
+          <video src="/intro.mp4" preload="auto" muted playsInline style={{ display: "none" }} />
+        </>
+      )}
 
-    {/* 🔥 ADDED */}
-    <video
-      src="/intro.mp4"
-      preload="auto"
-      muted
-      playsInline
-      style={{ display: "none" }}
-    />
-  </>
-)}
+      {/* PROGRESS */}
+      {entered && (
+        <div className="fixed top-0 left-0 w-full h-[2px] bg-white/10 z-[999]">
+          <div className="h-full bg-white transition-all duration-500" style={{ width: `${progress}%` }} />
+        </div>
+      )}
 
-      {/* 🔥 CURSOR */}
+      {/* CURSOR */}
       <div
         className="cursor-glow"
-        style={{
-          transform: `translate(${cursor.x}px, ${cursor.y}px)`
-        }}
+        style={{ transform: `translate(${cursor.x}px, ${cursor.y}px)` }}
       />
+
+      {/* SLIDE */}
+      {entered && (
+        <div className="fixed bottom-6 right-6 text-xs tracking-widest text-gray-400 z-50">
+          {String(slideIndex).padStart(2, "0")} / {String(totalSlides).padStart(2, "0")}
+        </div>
+      )}
+
+      {/* AUTO */}
+      {entered && (
+        <button
+          onClick={() => setAutoPlay(!autoPlay)}
+          className="fixed bottom-6 left-6 text-xs tracking-widest text-gray-400 z-50 border border-white/20 px-4 py-2 hover:bg-white hover:text-black transition"
+        >
+          {autoPlay ? "PAUSE" : "AUTO"}
+        </button>
+      )}
 
       {loading && <Loader />}
 
-      {/* INTRO */}
       {!entered && !loading && !showTransition && (
         <Intro onEnter={() => setShowTransition(true)} />
       )}
 
-      {/* TRANSITION */}
       {showTransition && !entered && (
         <motion.div
           className="fixed inset-0 bg-black z-[999]"
@@ -150,52 +254,32 @@ export default function App() {
         />
       )}
 
-      {/* MAIN APP */}
       <AnimatePresence mode="wait">
         {entered && !loading && (
-          <motion.div
-            key="main"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6 }}
-          >
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
             <Navbar />
 
-            <Suspense
-              fallback={
-                <div className="text-center mt-40 text-muted">
-                  Loading experience...
-                </div>
-              }
-            >
+            <Suspense fallback={<div className="text-center mt-40 text-muted">Loading...</div>}>
               <main className="pt-20">
-
                 <section id="hero"><Hero /></section>
                 <section id="immersive"><Immersive /></section>
-
                 <section id="stats"><Stats /></section>
                 <section id="overview"><Overview /></section>
                 <section id="brands"><Brands /></section>
                 <section id="retail"><Retail /></section>
-
                 <section id="leasing"><Leasing /></section>
                 <section id="sponsorship"><Sponsorship /></section>
-
                 <section id="experience"><Experience /></section>
                 <section id="luxury"><Luxury /></section>
                 <section id="dining"><Dining /></section>
                 <section id="entertainment"><Entertainment /></section>
                 <section id="events"><Events /></section>
                 <section id="event-details"><EventDetails /></section>
-
                 <section id="cta"><CTA /></section>
-
               </main>
             </Suspense>
 
-            {/* INSIGHT PANEL */}
             <InsightPanel insight={insight} />
-
           </motion.div>
         )}
       </AnimatePresence>

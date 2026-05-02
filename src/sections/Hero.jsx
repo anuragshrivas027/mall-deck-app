@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 export default function Hero() {
-  const [videoReady, setVideoReady] = useState(true); // 🔥 changed
+  const [videoReady, setVideoReady] = useState(true);
   const videoRef = useRef(null);
 
   const { scrollY } = useScroll();
@@ -13,7 +13,6 @@ export default function Hero() {
 
   useEffect(() => {
     const video = videoRef.current;
-
     if (video) {
       video.play().catch(() => {});
     }
@@ -32,13 +31,10 @@ export default function Hero() {
         preload="auto"
         style={{
           scale,
-          opacity: 1 // 🔥 always visible
+          opacity: 1
         }}
         className="absolute w-full h-full object-cover"
       />
-
-      {/* ❌ removed delay fallback dependency */}
-      {/* (kept your structure but now it won't block video) */}
 
       <div className="absolute inset-0 bg-black/65 z-10" />
 
@@ -46,6 +42,12 @@ export default function Hero() {
         style={{ y, opacity }}
         className="relative z-20 h-full flex flex-col items-center justify-center text-center px-6"
       >
+
+        {/* 🔥 ADDED */}
+        <p className="text-[10px] tracking-[0.4em] text-gray-400 mb-4">
+          SLIDE 01
+        </p>
+
         <h1 className="text-6xl md:text-8xl font-semibold tracking-tight">
           Galleria Mall
         </h1>
@@ -72,6 +74,7 @@ export default function Hero() {
         >
           Explore Experience
         </button>
+
       </motion.div>
     </div>
   );

@@ -47,7 +47,7 @@ export default function Navbar() {
   };
 
   return (
-    <div className="fixed top-0 left-0 w-full z-50 bg-black/40 backdrop-blur-xl border-b border-white/10 px-10 py-6 flex justify-between items-center">
+    <div className="fixed top-0 left-0 w-full z-50 bg-black/60 backdrop-blur-xl border-b border-white/10 px-10 py-6 flex justify-between items-center">
 
       <h1 className="text-xs tracking-[0.35em] font-semibold">
         GALLERIA
